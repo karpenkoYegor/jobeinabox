@@ -35,7 +35,7 @@ COPY container-test.sh /
 # Clean up
 RUN ln -snf /usr/share/zoneinfo/"$TZ" /etc/localtime && \
     echo "$TZ" > /etc/timezone && \
-    apt-get update && \
+    apt-get update --fix-missing && \
     apt-get --no-install-recommends install -yq \
         acl \
         apache2 \
@@ -52,6 +52,7 @@ RUN ln -snf /usr/share/zoneinfo/"$TZ" /etc/localtime && \
         python3 \
         python3-pip \
         python3-setuptools \
+        dotnet-runtime-7.0 \
         sqlite3 \
         sudo \
         tzdata \
@@ -69,7 +70,7 @@ RUN ln -snf /usr/share/zoneinfo/"$TZ" /etc/localtime && \
     mkdir -p /var/crash && \
     chmod 777 /var/crash && \
     echo '<!DOCTYPE html><html lang="en"><title>Jobe</title><h1>Jobe</h1></html>' > /var/www/html/index.html && \
-    git clone https://github.com/trampgeek/jobe.git /var/www/html/jobe && \
+    git clone https://github.com/karpenkoYegor/jobe.git /var/www/html/jobe && \
     apache2ctl start && \
     cd /var/www/html/jobe && \
     /usr/bin/python3 /var/www/html/jobe/install --max_uid=500 && \
