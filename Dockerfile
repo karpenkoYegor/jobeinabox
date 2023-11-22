@@ -35,7 +35,7 @@ COPY container-test.sh /
 # Clean up
 RUN ln -snf /usr/share/zoneinfo/"$TZ" /etc/localtime && \
     echo "$TZ" > /etc/timezone && \
-    apt-get update --fix-missing && \
+    apt-get update && \
     apt-get --no-install-recommends install -yq \
         acl \
         apache2 \
